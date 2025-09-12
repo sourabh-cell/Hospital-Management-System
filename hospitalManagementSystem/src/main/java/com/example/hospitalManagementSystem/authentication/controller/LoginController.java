@@ -11,20 +11,22 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class Demo {
+public class LoginController {
 
     @Autowired
-    UserServiceImpl userServiceImpl;
+    private UserServiceImpl userServiceImpl;
 
     @GetMapping("/")
-    public String home()
+    public String showHome()
     {
+
         return "redirect:/login";
     }
 
     @GetMapping("/login")
     public String showLogin()
     {
+
         return "index";
     }
 

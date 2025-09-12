@@ -1,4 +1,4 @@
-package com.example.hospitalManagementSystem.entity;
+package com.example.hospitalManagementSystem.authentication.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,7 +19,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "Users")
-public class User {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,8 +52,12 @@ public class User {
     private Set<Role> roles = new HashSet<>();
 
     /** One-to-One with UserInfo */
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL,optional = true)
+    @OneToOne(mappedBy = "userEntity", cascade = CascadeType.ALL,optional = true)
     private UserInfo userInfo;
 
     // getters & setters
+
+    public boolean isEnabled() {   // <-- Getter Spring Security expects
+        return enabled;
+    }
 }

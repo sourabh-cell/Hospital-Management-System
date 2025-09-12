@@ -1,4 +1,4 @@
-package com.example.hospitalManagementSystem.entity;
+package com.example.hospitalManagementSystem.authentication.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -26,7 +26,7 @@ public class UserInfo {
     /** One-to-One with User */
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private UserEntity userEntity;
 
     /** One-to-One with Address */
     @OneToOne

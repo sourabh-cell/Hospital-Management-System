@@ -1,4 +1,4 @@
-package com.example.hospitalManagementSystem.entity;
+package com.example.hospitalManagementSystem.authentication.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

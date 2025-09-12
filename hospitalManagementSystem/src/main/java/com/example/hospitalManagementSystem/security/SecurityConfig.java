@@ -62,6 +62,9 @@ public class SecurityConfig {
                         .requestMatchers("/register","/register/**","/login", "/css/**", "/js/**" ,"/images/**").permitAll()
 
                                 //admin can access all endpoint
+                                .requestMatchers("/super_admin/**").hasRole("SUPER_ADMIN")
+
+                                //admin can access all endpoint
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
 
                                 //Dotor can access Ward-related /patient related endpoint

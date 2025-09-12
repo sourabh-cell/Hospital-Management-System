@@ -30,6 +30,13 @@ public class LoginController {
         return "index";
     }
 
+    @GetMapping("/super_admin")
+    public String showAdmin()
+    {
+
+        return "superadmin";
+    }
+
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new UserEntity()); // this "user" is used by th:object

@@ -29,9 +29,14 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler
         {
             String role = grantedAuthority.getAuthority(); //putting role of user in role variable
 
+            if (role.equals("ROLE_SUPER_ADMIN"))  //checking role of user
+            {
+                redirectUrl = "/super_admin";
+            }
+
             if (role.equals("ROLE_ADMIN"))  //checking role of user
             {
-                redirectUrl = "/admin/";
+                redirectUrl = "/admin";
             }
 
             else if (role.equals("ROLE_DOCTOR"))  // checking role of user

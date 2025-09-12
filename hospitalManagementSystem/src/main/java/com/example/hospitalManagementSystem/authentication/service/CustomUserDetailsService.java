@@ -1,21 +1,28 @@
 package com.example.hospitalManagementSystem.authentication.service;
 
+
+import com.example.hospitalManagementSystem.authentication.entity.UserEntity;
 import com.example.hospitalManagementSystem.authentication.service.serviceImplementation.UserServiceImpl;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.User;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private final UserServiceImpl userServiceImpl;
+    private final UserService userService;
 
 
     //injecting through constructor
-    public CustomUserDetailsService(UserServiceImpl userServiceImpl) {
-        this.userServiceImpl = userServiceImpl;
+    public CustomUserDetailsService(UserServiceImpl userService) {
+        this.userService = userService;
 
     }
 
@@ -23,14 +30,15 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-       return userServiceImpl.findUserByUsername(username)
-               .map(user -> User.builder()
-                       .username(user.getUsername())
-                       .password(user.getPassword()) // BCrypt password
-                       .roles(user.getRoles().toArray(new String[0])) // ["ADMIN", "DOCTOR", etc.]
-                       .disabled(!user.isEnabled()) // invert because builder takes "disabled"
-                       .build()
-               )
-               .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
+        UserEntity user = userService.findUserByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
+
+        // ✅ Convert roles into GrantedAuthority
+        Set<GrantedAuthority> authorities = user.getRoles()
+                .stream()
+                .map(role -> new SimpleGrantedAuthority(role.getRoleName())) // ROLE_ADMIN, ROLE_SUPER_ADMIN, etc.
+                .collect(Collectors.toSet());
+
+        return new User(user.getUsername(), user.getPassword(), authorities);
     }
 }

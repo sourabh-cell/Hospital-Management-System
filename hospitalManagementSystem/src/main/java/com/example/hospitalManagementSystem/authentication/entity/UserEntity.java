@@ -1,9 +1,15 @@
 package com.example.hospitalManagementSystem.authentication.entity;
 
+import com.example.hospitalManagementSystem.audit.Auditable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -17,9 +23,10 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 @Table(name = "Users")
-public class UserEntity {
+public class UserEntity extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,11 +43,7 @@ public class UserEntity {
 
     private Boolean enabled = true;
 
-    private LocalDateTime createdAt;
-    private String createdBy;
 
-    private LocalDateTime modifiedAt;
-    private String modifiedBy;
 
     /** Many-to-Many with Role */
     @ManyToMany(fetch = FetchType.EAGER)
@@ -58,6 +61,7 @@ public class UserEntity {
     // getters & setters
 
     public boolean isEnabled() {   // <-- Getter Spring Security expects
+
         return enabled;
     }
 }

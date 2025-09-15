@@ -1,7 +1,8 @@
 package com.example.hospitalManagementSystem.authentication.controller;
 
 import com.example.hospitalManagementSystem.authentication.entity.UserEntity;
-import com.example.hospitalManagementSystem.authentication.service.serviceImplementation.UserServiceImpl;
+import com.example.hospitalManagementSystem.authentication.service.CurrentUserAndPermissionService;
+import com.example.hospitalManagementSystem.authentication.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class LoginController {
 
     @Autowired
-    private UserServiceImpl userServiceImpl;
+    private UserService userService;
+
+    @Autowired
+    private CurrentUserAndPermissionService currentUserAndPermissionService;
 
     @GetMapping("/")
     public String showHome()
@@ -34,18 +38,35 @@ public class LoginController {
     public String showAdmin()
     {
 
-        return "superadmin";
+        return "dashboard";
     }
+
+    //for testing//////////////////////////////////////////////////////////////////////
+
+
+    @GetMapping("/accountant")
+    public String accountantPage() {
+        return "accountant"; // accountant.html
+    }
+
+    @GetMapping("/receptionist")
+    public String receptionistPage() {
+        return "receptionist"; // receptionist.html
+    }
+    /// /////////////////////////////////////////////////////////////////////
+
+
+
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new UserEntity()); // this "user" is used by th:object
-        return "registration_form"; // Thymeleaf template name
+        return "registration-form"; // Thymeleaf template name
     }
 
     @PostMapping("/register")
     public ResponseEntity<UserEntity> createUser(@ModelAttribute("user") UserEntity userEntity) {
-        UserEntity savedUserEntity = userServiceImpl.createUser(userEntity);
+        UserEntity savedUserEntity = userService.createUser(userEntity);
         System.out.println("User created successfully");
         return ResponseEntity.ok(savedUserEntity);
     }

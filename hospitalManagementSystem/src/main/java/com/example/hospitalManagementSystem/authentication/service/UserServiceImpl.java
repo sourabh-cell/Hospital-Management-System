@@ -1,8 +1,7 @@
-package com.example.hospitalManagementSystem.authentication.service.serviceImplementation;
+package com.example.hospitalManagementSystem.authentication.service;
 
 import com.example.hospitalManagementSystem.authentication.entity.UserEntity;
 import com.example.hospitalManagementSystem.authentication.repositories.UserRepo;
-import com.example.hospitalManagementSystem.authentication.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -40,4 +39,9 @@ public class UserServiceImpl implements UserService {
     {
         return userRepo.findByUsername(username);
     }
+
+
+
+
+
 }

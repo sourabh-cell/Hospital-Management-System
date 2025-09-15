@@ -21,58 +21,36 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler
     {
 
 
+        System.out.println("Authorities:");
+        for (GrantedAuthority authority : authentication.getAuthorities()) {
+            System.out.println(" - " + authority.getAuthority());
+        }
+
         //check role of user
         String redirectUrl = request.getContextPath();
 
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-        for (GrantedAuthority grantedAuthority : authorities)
-        {
-            String role = grantedAuthority.getAuthority(); //putting role of user in role variable
-
-            if (role.equals("ROLE_SUPER_ADMIN"))  //checking role of user
-            {
-                redirectUrl = "/super_admin";
-            }
-
-            if (role.equals("ROLE_ADMIN"))  //checking role of user
-            {
-                redirectUrl = "/admin";
-            }
-
-            else if (role.equals("ROLE_DOCTOR"))  // checking role of user
-            {
-                redirectUrl = "/doctor";
-            }
-
-            else if (role.equals("ROLE_HEADNURSE"))  // checking role of user
-            {
-                redirectUrl = "/headnurse";
-            }
-
-            else if (role.equals("ROLE_PHARMACIST"))  // checking role of user
-            {
-                redirectUrl = "/pharmacist";
-            }
-
-            else if (role.equals("ROLE_ACCOUNTANT"))  // checking role of user
-            {
-                redirectUrl = "/accountant";
-            }
-
-            else if (role.equals("ROLE_HR"))  // checking role of user
-            {
-                redirectUrl = "/hr";
-            }
-
-            else if (role.equals("ROLE_LABORATORIST"))  // checking role of user
-            {
-                redirectUrl = "/laboratorist";
-            }
-
-            else if (role.equals("ROLE_INSURANCE"))  // checking role of user
-            {
-                redirectUrl = "/insurance";
-            }
+        // Check for roles only
+        if (authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_SUPER_ADMIN"))) {
+            redirectUrl = "/super_admin";
+        } else if (authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
+            redirectUrl = "/admin";
+        } else if (authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_DOCTOR"))) {
+            redirectUrl = "/doctor";
+        } else if (authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_HEADNURSE"))) {
+            redirectUrl = "/headnurse";
+        } else if (authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_PHARMACIST"))) {
+            redirectUrl = "/pharmacist";
+        } else if (authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_ACCOUNTANT"))) {
+            redirectUrl = "/accountant";
+        } else if (authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_HR"))) {
+            redirectUrl = "/hr";
+        } else if (authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_LABORATORIST"))) {
+            redirectUrl = "/laboratorist";
+        } else if (authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_INSURANCE"))) {
+            redirectUrl = "/insurance";
+        } else if (authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_RECEPTIONIST"))) {
+            redirectUrl = "/receptionist";
         }
         response.sendRedirect(redirectUrl);
     }

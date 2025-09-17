@@ -1,4 +1,4 @@
-package com.example.hospitalManagementSystem.doctor;
+package com.example.hospitalManagementSystem.doctor.controller;
 
 import com.example.hospitalManagementSystem.authentication.service.CurrentUserAndPermissionService;
 import org.springframework.beans.factory.annotation.Autowired;

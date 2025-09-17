@@ -108,11 +108,11 @@
             </li>
 
             <!-- Departments -->
-            <li>
+            <li sec:authorize="hasAuthority('DEPARTMENT_VIEW')">
                 <a href="#" class="toggle"><i class="fa fa-building"></i> Departments</a>
                 <ul class="submenu">
-                    <li><a th:href="@{/departments/add}">Add Department</a></li>
-                    <li><a th:href="@{/departments/manage}">Manage Departments</a></li>
+                    <li sec:authorize="hasAuthority('DEPARTMENT_ADD')"><a th:href="@{/department/registration}" >Add Department</a></li>
+                    <li><a th:href="@{/department/list}">Manage Departments</a></li>
                 </ul>
             </li>
 
@@ -318,6 +318,6 @@
         });
     });
 </script>
-
+`
 </body>
 </html>

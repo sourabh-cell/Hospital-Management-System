@@ -20,7 +20,7 @@ public class DoctorController {
         System.out.println("doctor controller");
         model.addAttribute("user",currentUserAndPermissionService.getCurrentUser());
         model.addAttribute("permissions",currentUserAndPermissionService.getPermissions());
-        return "dashboard"; // doctor.html
+        return "index"; // doctor.html
     }
 
 

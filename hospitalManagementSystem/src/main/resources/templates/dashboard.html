@@ -167,8 +167,9 @@
             <li>
                 <a href="#" class="toggle"><i class="fa fa-bed"></i> Bed Manager</a>
                 <ul class="submenu">
-                    <li><a th:href="@{/beds/add}">Add New Bed</a></li>
-                    <li><a th:href="@{/beds/manage}">Manage Beds</a></li>
+                    <li sec:authorize="hasAuthority('ROOM_ADD')"><a th:href="@{/room/add}">Add New Room</a></li>
+                    <li sec:authorize="hasAuthority('BED_ADD')"><a th:href="@{/bed/add}">Add New Bed</a></li>
+                    <li sec:authorize="hasAuthority('BED_LIST')"><a th:href="@{/bed/list}">View Bed</a></li>
                 </ul>
             </li>
 
@@ -260,8 +261,10 @@
             <li>
                 <a href="#" class="toggle"><i class="fa fa-ambulance"></i> Ambulance</a>
                 <ul class="submenu">
-                    <li><a th:href="@{/ambulance/add}">Add Ambulance</a></li>
-                    <li><a th:href="@{/ambulance/manage}">Manage Ambulances</a></li>
+                    <li sec:authorize="hasAuthority('AMBULANCE_ADD')"><a th:href="@{/ambulance/add}">Add Ambulance</a></li>
+                    <li sec:authorize="hasAuthority('DRIVER_ADD')"><a th:href="@{/driver/add}">Add Driver</a></li>
+                    <li sec:authorize="hasAuthority('AMBULANCE_ASSIGNMENT')"><a th:href="@{/ambulance/assignment/add}">Assign Ambulances</a></li>
+                    <li sec:authorize="hasAuthority('AMBULANCE_VIEW')"><a th:href="@{/ambulance/view}">View Ambulances</a></li>
                 </ul>
             </li>
 
@@ -278,8 +281,8 @@
             <li>
                 <a href="#" class="toggle"><i class="fa fa-bullhorn"></i> Notice Board</a>
                 <ul class="submenu">
-                    <li><a th:href="@{/notices/add}">Add Notice</a></li>
-                    <li><a th:href="@{/notices/manage}">Manage Notices</a></li>
+                    <li><a th:href="@{/notice/add}">Add Notice</a></li>
+                    <li><a th:href="@{/notice/list}">Manage Notices</a></li>
                 </ul>
             </li>
 

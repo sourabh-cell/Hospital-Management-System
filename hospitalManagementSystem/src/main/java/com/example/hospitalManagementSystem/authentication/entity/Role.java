@@ -1,5 +1,6 @@
 package com.example.hospitalManagementSystem.authentication.entity;
 
+import com.example.hospitalManagementSystem.noticeBoard.entity.Notice;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,5 +37,7 @@ public class Role {
     )
     private Set<Permission> permissions = new HashSet<>();
 
-    // getters & setters
+    /** MAny-to-Many with notice**/
+    @ManyToMany(mappedBy = "targetAudience")
+    private Set<Notice> notices = new HashSet<>();
 }

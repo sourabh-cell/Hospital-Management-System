@@ -31,29 +31,16 @@ public class LoginController {
     public String showLogin()
     {
 
-        return "index";
+        return "login";
     }
 
     @GetMapping("/super_admin")
-    public String showAdmin()
+    public String showAdmin(Model model)
     {
-
-        return "dashboard";
+            return "index";
     }
 
-    //for testing//////////////////////////////////////////////////////////////////////
 
-
-    @GetMapping("/accountant")
-    public String accountantPage() {
-        return "accountant"; // accountant.html
-    }
-
-    @GetMapping("/receptionist")
-    public String receptionistPage() {
-        return "receptionist"; // receptionist.html
-    }
-    /// /////////////////////////////////////////////////////////////////////
 
 
 

@@ -1,6 +1,7 @@
 package com.example.hospitalManagementSystem.authentication.entity;
 
 import com.example.hospitalManagementSystem.audit.Auditable;
+import com.example.hospitalManagementSystem.enums.Enums;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -49,12 +50,16 @@ public class UserInfo extends Auditable {
     private byte[] profilePic;
 
     @Enumerated(EnumType.STRING)
-    private Gender gender;
+    private Enums.Gender gender;
 
     private LocalDate dob;
     private Integer age;
     private LocalDate joiningDate;
-    private String bloodGroup;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "blood_group", nullable = false)
+    private Enums.BloodGroup bloodGroup;
+
     private String idProofName;
 
     @Lob
@@ -64,10 +69,7 @@ public class UserInfo extends Auditable {
 
 
 
-    // Enum for gender
-    public enum Gender {
-        MALE, FEMALE, OTHER
-    }
+
 
     // getters & setters
 }

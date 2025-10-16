@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96738f79-001e-4a8e-b0ed-4bdcad993b34" name="Changes" comment="" />
+    <list default="true" id="96738f79-001e-4a8e-b0ed-4bdcad993b34" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/hospitalManagementSystem/src/main/java/com/example/hospitalManagementSystem/noticeBoard/mapper/NoticeMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hospitalManagementSystem/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/hospitalManagementSystem/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hospitalManagementSystem/src/main/java/com/example/hospitalManagementSystem/authentication/entity/CustomUserDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/hospitalManagementSystem/src/main/java/com/example/hospitalManagementSystem/authentication/entity/CustomUserDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hospitalManagementSystem/src/main/java/com/example/hospitalManagementSystem/authentication/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/hospitalManagementSystem/src/main/java/com/example/hospitalManagementSystem/authentication/entity/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hospitalManagementSystem/src/main/java/com/example/hospitalManagementSystem/authentication/entity/UserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/hospitalManagementSystem/src/main/java/com/example/hospitalManagementSystem/authentication/entity/UserInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hospitalManagementSystem/src/main/java/com/example/hospitalManagementSystem/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/hospitalManagementSystem/src/main/java/com/example/hospitalManagementSystem/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hospitalManagementSystem/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/hospitalManagementSystem/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hospitalManagementSystem/src/main/resources/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/hospitalManagementSystem/src/main/resources/templates/dashboard.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,6 +22,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "sourabh-cell"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/sourabh-cell/Hospital-Management-System.git",
+    "accountId": "a9fe2d97-9461-4d79-9b95-45d83c4ce9b8"
+  }
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -20,10 +41,10 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="32VIyjCS3DWXZqNxmnQtHLJ6eLD" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -34,6 +55,9 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Git/Hospital-Management-System",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -41,7 +65,6 @@
     <attachedChunks>
       <set>
         <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.23892.409" />
-        <option value="bundled-js-predefined-d6986cc7102b-e03c56caf84a-JavaScript-IU-252.23892.409" />
       </set>
     </attachedChunks>
   </component>

@@ -49,6 +49,10 @@ public class CustomUserDetails implements UserDetails, Serializable {
         return permissions; // 👈 now you can return actual Permission objects
     }
 
+    public UserEntity getUser() {
+        return this.user; // <-  current user
+    }
+
     // ✅ Password for authentication
     @Override
     public String getPassword() {

@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-<meta http-equiv="Pragma" content="no-cache" />
-<meta http-equiv="Expires" content="0" />
-<head>
-    <title>Departments</title>
-</head>
-<body>
+<div th:fragment="departmentListFragment" xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <h2>Department List</h2>
 
@@ -44,5 +37,4 @@
     </tr>
 </table>
 
-</body>
-</html>
+</div>

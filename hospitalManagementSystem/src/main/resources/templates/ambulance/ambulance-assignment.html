@@ -1,0 +1,108 @@
+
+<div th:fragment="ambulanceAssignmentFragment" xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/extras/spring-security" class="container-fluid mt-5">
+<div class="assignment-form">
+    <div class="form-header d-flex justify-content-center align-items-center"  style="background-color: #01C0C8; padding: 10px; font-size:28px;">
+        <i class="fa-solid fa-clipboard"></i> Ambulance Assignment
+    </div>
+
+    <!-- Display error/success messages -->
+    <div id="errorMsg" th:if="${error}" style="color:red; font-weight:bold; margin-bottom:10px;">
+        <p th:text="${error}"></p>
+    </div>
+    <div id="successMsg" th:if="${success}" style="color:green; font-weight:bold; margin-bottom:10px;">
+        <p th:text="${success}"></p>
+    </div>
+
+    <!-- Thymeleaf Form -->
+    <form th:action="@{/ambulance/assignment/add}" th:object="${ambulanceAssignmentDto}" method="post">
+
+        <!-- Ambulance -->
+        <div class="form-group">
+            <label for="assignAmbulance">Ambulance</label>
+            <select id="assignAmbulance" th:field="*{ambulanceId}" required>
+                <option value="">Select Ambulance</option>
+                <option th:each="amb : ${ambulanceList}"
+                        th:value="${amb.ambulanceId}"
+                        th:text="${amb.vehicleNumber}">
+                </option>
+            </select>
+            <span th:if="${#fields.hasErrors('ambulanceId')}" th:errors="*{ambulanceId}" class="error"></span>
+        </div>
+
+        <!-- Driver -->
+        <div class="form-group">
+            <label for="assignDriver">Driver</label>
+            <select id="assignDriver" th:field="*{driverId}" required>
+                <option value="">Select Driver</option>
+                <option th:each="driver : ${driverList}"
+                        th:value="${driver.driverId}"
+                        th:text="${driver.driverName}">
+                </option>
+            </select>
+            <span th:if="${#fields.hasErrors('driverId')}" th:errors="*{driverId}" class="error"></span>
+        </div>
+
+        <!-- Driver -->
+        <div class="form-group">
+            <label for="assignStatus">Status</label>
+            <select id="assignStatus" th:field="*{status}" required>
+                <option value="">Select Status</option>
+                <option th:each="s: ${assignmentStatus}"
+                        th:value="${s}"
+                        th:text="${s}">
+                </option>
+            </select>
+            <span th:if="${#fields.hasErrors('driverId')}" th:errors="*{driverId}" class="error"></span>
+        </div>
+
+
+
+<!--        &lt;!&ndash; Patient (optional) &ndash;&gt;-->
+<!--        <div class="form-group">-->
+<!--            <label for="assignPatient">Patient</label>-->
+<!--            <select id="assignPatient" th:field="*{patientId}">-->
+<!--                <option value="">Select Patient</option>-->
+<!--                <option th:each="patient : ${patientList}"-->
+<!--                        th:value="${patient.patientId}"-->
+<!--                        th:text="${patient.patientName}">-->
+<!--                </option>-->
+<!--            </select>-->
+<!--            <span th:if="${#fields.hasErrors('patientId')}" th:errors="*{patientId}" class="error"></span>-->
+<!--        </div>-->
+
+        <!-- From Location -->
+        <div class="form-group">
+            <label for="fromLocation">From Location</label>
+            <input type="text" id="fromLocation" th:field="*{fromLocation}" placeholder="Enter Pickup Location" required>
+            <span th:if="${#fields.hasErrors('fromLocation')}" th:errors="*{fromLocation}" class="error"></span>
+        </div>
+
+        <!-- To Location -->
+        <div class="form-group">
+            <label for="toLocation">To Location</label>
+            <input type="text" id="toLocation" th:field="*{toLocation}" placeholder="Enter Drop Location" required>
+            <span th:if="${#fields.hasErrors('toLocation')}" th:errors="*{toLocation}" class="error"></span>
+        </div>
+
+        <!-- Start Time -->
+        <div class="form-group">
+            <label for="startTime">Start Time</label>
+            <input type="datetime-local" id="startTime" th:field="*{startTime}" required>
+            <span th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}" class="error"></span>
+        </div>
+
+        <!-- End Time -->
+        <div class="form-group">
+            <label for="endTime">End Time</label>
+            <input type="datetime-local" id="endTime" th:field="*{endTime}" required>
+            <span th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}" class="error"></span>
+        </div>
+
+        <!-- Submit -->
+        <div class="form-footer d-flex justify-content-center">
+            <button type="submit" style="background-color: #01C0C8;">Save</button>
+        </div>
+    </form>
+</div>
+</div>

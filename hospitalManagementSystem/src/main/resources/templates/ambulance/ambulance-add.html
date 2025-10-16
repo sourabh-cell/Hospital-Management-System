@@ -1,0 +1,112 @@
+<div th:fragment="ambulanceAddFragment" xmlns:th="http://www.thymeleaf.org">
+    <div class="container-fluid mt-1">
+    <div class="container-fluid p-0">
+        <div class="card border-0 shadow-sm">
+
+            <!-- Header -->
+            <div class="card-header text-white text-center py-3">
+                <h4 class="mb-0">
+                    <i class="fas fa-ambulance me-2"></i>Add Ambulance
+                </h4>
+            </div>
+
+            <!-- Form Body -->
+            <div class="card-body p-4">
+
+                <!-- Error and Success Messages -->
+                <div id="errorMsg" class="alert alert-danger d-none" role="alert">
+                    <p class="mb-0"></p>
+                </div>
+
+                <div id="successMsg" class="alert alert-success d-none" role="alert">
+                    <p class="mb-0"></p>
+                </div>
+
+                <!-- FORM -->
+                <form th:action="@{/ambulance/add}"
+                      th:object="${ambulanceDto}"
+                      method="post" data-ajax="true"
+                      data-fragment-path="/ambulance/add">
+                    <div class="row g-3">
+
+                        <!-- Vehicle Number -->
+                        <div class="col-md-6">
+                            <label for="vehicleNumber" class="form-label">
+                                Vehicle Number <span class="text-danger">*</span>
+                            </label>
+                            <input
+                                    type="text"
+                                    class="form-control"
+                                    id="vehicleNumber"
+                                    th:field="*{vehicleNumber}"
+                                    placeholder="Enter Vehicle Number"
+                                    required
+                            />
+                        </div>
+
+                        <!-- Ambulance Type -->
+                        <div class="col-md-6">
+                            <label for="ambulanceType" class="form-label">
+                                Ambulance Type <span class="text-danger">*</span>
+                            </label>
+                            <select
+                                    class="form-select"
+                                    id="ambulanceType"
+                                    th:field="*{ambulanceType}"
+                                    required
+                            >
+                                <option value="">-- Select Ambulance Type --</option>
+                                <option th:each="type : ${ambulanceType}"
+                                         th:value="${type}"
+                                         th:text="${type}"></option>
+
+                            </select>
+                        </div>
+
+                        <!-- Status -->
+                        <div class="col-md-6">
+                            <label for="ambulanceStatus" class="form-label">
+                                Status <span class="text-danger">*</span>
+                            </label>
+                            <select
+                                    class="form-select"
+                                    id="ambulanceStatus"
+                                    th:field="*{ambulanceStatus}"
+                                    required
+                            >
+                                <option value="">Select Status</option>
+                                <option th:each="status : ${ambulanceStatus}"
+                                         th:value="${status}"
+                                         th:text="${status}"></option>i
+                            </select>
+                        </div>
+
+                        <!-- Last Maintenance Date -->
+                        <div class="col-md-6">
+                            <label for="lastMaintenanceDate" class="form-label">
+                                Last Maintenance Date <span class="text-danger">*</span>
+                            </label>
+                            <input
+                                    type="date"
+                                    class="form-control"
+                                    id="lastMaintenanceDate"
+                                    th:field="*{lastMaintenanceDate}"
+                                    required
+                            />
+                        </div>
+
+
+
+                        <!-- Submit Button -->
+                        <div class="col-12 text-center mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg px-4">
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>>

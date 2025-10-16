@@ -1,0 +1,161 @@
+<div th:fragment="addRoomFragment" xmlns:th="http://www.thymeleaf.org">
+
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <!-- ############################################################## -->
+        <div class="form-card p-4 shadow-sm bg-white rounded">
+          <div class="form-header mb-4 d-flex align-items-center">
+            <i class="fa-solid fa-file-medical fa-lg mr-2 text-primary"></i>
+            <h3 class="mb-0">Add Room</h3>
+          </div>
+
+          <form id="roomForm" novalidate th:action="@{/room/add}" th:object="${createRoomDto}" method="post">
+            <div class="form-row">
+              <!-- Room No -->
+              <div class="form-group col-md-6">
+                <label for="roomNo"
+                  >Room No <span class="text-danger">*</span></label
+                >
+                <input
+                  type="text"
+                  id="roomNo"
+                  name="roomNo"
+                  th:field="*{roomNo}"
+                  class="form-control"
+                  placeholder="Enter Room Number"
+                  required
+                />
+                  <div style="color:red;" th:errors="*{roomNo}"></div>
+              </div>
+
+                <!-- Room Name -->
+                <div class="form-group col-md-6">
+                    <label for="roomNo"
+                    >Room Name <span class="text-danger">*</span></label
+                    >
+                    <input
+                            type="text"
+                            id="roomName"
+                            th:field="*{roomName}"
+                            name="roomName"
+                            class="form-control"
+                            placeholder="Enter Room Number"
+                            required
+                    />
+                </div>
+
+
+                <!-- Room Type -->
+              <div class="form-group col-md-6">
+                <label for="roomType"
+                  >Room Type <span class="text-danger">*</span></label
+                >
+                <select id="roomType" th:field="*{roomTypeName}" class="form-control" name="roomTypeName" required>
+                  <option value="">-- Select Room Type --</option>
+                  <option th:each="r : ${roomType}"
+                          th:text="${r}"
+                          th:value="${r}"></option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Floor -->
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="floor"
+                  >Select Floor <span class="text-danger">*</span></label
+                >
+                <select id="floor" class="form-control" name="floor" required>
+                  <option value="">-- Select Floor --</option>
+                  <option value="1">1st Floor</option>
+                  <option value="2">2nd Floor</option>
+                  <option value="3">3rd Floor</option>
+                  <option value="4">4th Floor</option>
+                  <option value="5">5th Floor</option>
+                </select>
+              </div>
+
+              <!-- Status -->
+              <div class="form-group col-md-6">
+                <label for="status">Status</label>
+                <select class="form-control" th:field="*{status}" id="status" name="status">
+                  <option  value = "">Select Status</option>
+                  <option th:each="s : ${roomStatus}"
+                          th:text="${s}"
+                          th:value="${s}"></option>
+                </select>
+                  <div style="color:red;" th:errors="*{status}"></div>
+              </div>
+            </div>
+
+
+            <!-- Case Description & Price -->
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="Description"
+                  >Description <span class="text-danger">*</span></label
+                >
+                <input
+                  type="text"
+                  name="description"
+                  id="Description"
+                  class="form-control"
+                  th:field="*{description}"
+                  placeholder="Description"
+                  required
+                  maxlength="100"
+                />
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="pricePerDay"
+                  >Price Per Day <span class="text-danger">*</span></label
+                >
+                <input
+                  type="number"
+                  name="pricePerDay"
+                  id="pricePerDay"
+                  th:field="*{pricePerDay}"
+                  class="form-control"
+                  placeholder="Enter Price (₹)"
+                  required
+                />
+              </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="form-footer mt-3">
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save mr-1"></i> Save
+              </button>
+            </div>
+          </form>
+        </div>
+        <!-- ############################################################## -->
+
+        <footer class="footer mt-5">
+          <div
+            class="d-sm-flex justify-content-center justify-content-sm-between"
+          >
+            <span
+              class="text-muted text-center text-sm-left d-block d-sm-inline-block"
+            >
+              Copyright © 2025 Hospital Management System. All rights reserved.
+            </span>
+            <span
+              class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"
+            >
+              Designed and Developed by
+              <a
+                href="https://kavyainfoweb.com/"
+                target="_blank"
+                style="text-decoration: none; color: rgb(2, 62, 62)"
+              >
+                Kavya Infoweb Pvt. Ltd.
+              </a>
+            </span>
+          </div>
+        </footer>
+      </div>
+    </div>
+</div>

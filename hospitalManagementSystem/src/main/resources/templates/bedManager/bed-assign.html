@@ -1,0 +1,77 @@
+<div th:fragment="bedAssignFragment" xmlns:th="http://www.thymeleaf.org">
+
+<div style="max-width:700px; margin:auto; background:#fff; padding:25px; border-radius:12px; box-shadow:0 6px 15px rgba(0,0,0,0.15);">
+
+    <div style="display:flex; align-items:center; margin-bottom:20px; border-bottom:2px solid #eee; padding-bottom:10px;">
+        <i class="fa-solid fa-bed" style="font-size:28px; color:#007bff; margin-right:10px;"></i>
+        <h3 style="margin:0; color:#333;">Assign Beds</h3>
+    </div>
+
+    <!-- Messages -->
+    <div th:if="${error}" style="color:red; font-weight:bold; margin-bottom:15px;">
+        <p th:text="${error}"></p>
+    </div>
+
+    <div th:if="${success}" style="color:green; font-weight:bold; margin-bottom:15px;">
+        <p th:text="${success}"></p>
+    </div>
+
+    <form id="bedForm" th:action="@{/bed/assignment}"  th:object="${bedAssignmentDTO}" method="post">
+        <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:20px;">
+
+            <!-- Bed No -->
+            <div>
+                <label for="bedNo" style="font-weight:bold; display:block; margin-bottom:6px;">Bed No <span style="color:red;">*</span></label>
+                <select id="bedNo" name="bedNo" th:field="*{bedId}"
+                        style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px;" required>
+                    <option value="">-- Select Bed No --</option>
+                    <option th:each="entry : ${bedNumber}"
+                            th:value="${entry.key}"
+                            th:text="${entry.value}">></option>
+                </select>
+            </div>
+
+            <!-- Room Name -->
+            <div>
+                <label for="roomId" style="font-weight:bold; display:block; margin-bottom:6px;">Room Name <span style="color:red;">*</span></label>
+                <input type="text" id="roomId" name="roomName"
+                       th:value="${room.roomName}" readonly
+                       style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px;" required/>
+            </div>
+
+
+
+            <div>
+                <label for="patientId" style="font-weight:bold; display:block; margin-bottom:6px;">
+                    Patient ID <span style="color:red;">*</span>
+                </label>
+
+                <select id="patientId" name="patientId" th:field="*{patientId}"
+                        style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px;" required>
+                    <option value="">-- Select Patient --</option>
+                    <option th:each="p : ${patientIds}"
+                            th:value="${p.key}"
+                            th:text="${p.value}"></option>
+                </select>
+            </div>
+
+            <!-- Room Type (constant text) -->
+            <div>
+                <label for="roomType" style="font-weight:bold; display:block; margin-bottom:6px;">Room Type</label>
+                <input type="text" id="roomType" name="roomType"
+                       style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px; background:#f0f0f0; color:#555;"
+                       readonly th:value="${room.roomType}"/>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align:center; margin-top:25px;">
+            <button type="submit"
+                    style="background:#007bff; color:#fff; padding:12px 28px; border:none; border-radius:8px; cursor:pointer; font-size:16px; transition:0.3s;">
+                Assign Bed
+            </button>
+        </div>
+    </form>
+</div>
+
+</div>>

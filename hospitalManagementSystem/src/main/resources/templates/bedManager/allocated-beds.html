@@ -1,0 +1,60 @@
+<div th:fragment="allocatedBedsFragment" xmlns:th="http://www.thymeleaf.org">
+
+            <div class="container-fluid">
+              <div class="card shadow-sm" id="tableSection">
+                <div style="justify-content: space-between;" class="head card-header bg-info text-white d-flex justify-content align-itemc-center ">
+                  <h5 class="mb-0">Allotted Beds</h5>
+                  <div class="d-flex justify-content-end gap-2">
+                    <button class="btn btn-sm btn-success me-2"><a style="color:white;text-decoration: none;" th:href="@{/bed/list}">Vacant Beds</a></button>
+                    <!-- <button class="btn btn-sm btn-success"><a style="color:white;text-decoration: none;" href="vacant-bed.html">Vacant Beds</a></button> -->
+                </div>
+                </div>
+
+                  <!-- Messages -->
+                  <div id="errorMsg" th:if="${error}" style="color:red; font-weight:bold; margin-bottom:15px;">
+                      <p th:text="${error}"></p>
+                  </div>
+
+                  <div id="successMsg" th:if="${success}" style="color:green; font-weight:bold; margin-bottom:15px;">
+                      <p th:text="${success}"></p>
+                  </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <h4>Alloted Beds</h4>
+<table
+  id="allotedTable"
+  class="table table-sm table-striped table-bordered dt-responsive nowrap"
+  style="width: 100%"
+>
+  <thead>
+    <tr>
+      <th><b>SL.NO</b></th>
+      <th><b>Bed No</b></th>
+      <th><b>Room Name</b></th>
+      <th><b>Room Type</b></th>
+      <th><b>Patient Name</b></th>
+      <th><b>Actions</b></th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr th:each="item,iterStat : ${bedAllotedDTO}">
+      <td th:text="${iterStat.count}"></td>
+      <td th:text="${item.bedNumber}"></td>
+      <td th:text="${item.roomName}"></td>
+      <td th:text="${item.roomType}"></td>
+      <td th:text="${item.patientName}"></td>
+      <td><a th:href="@{/bed/release{bedAssignmentId}(bedAssignmentId=${item.bedAssignmentId})}" class="btn btn-sm btn-danger">Release</a></td>
+
+
+  </tr>
+  </tbody>
+</table>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+</div>

@@ -1,0 +1,364 @@
+<div th:fragment="admin-Dashboard" xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <div class="header-toolbar d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+            <a class="text-decoration-none text-dark d-flex align-items-center" href="#">
+                <i class="fas fa-home me-2"></i>Home
+            </a>
+            <span class="text-muted mx-2"> / Dashboard </span>
+        </div>
+        <div class="d-flex align-items-center">
+            <button class="btn make-appoint rounded-pill me-2">
+                <i class="fas fa-plus me-1"></i> Make Appointment
+            </button>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="jumbotron-hero">
+                    <div>
+                        <h5 class="fw-normal">Good Morning.</h5>
+                        <h2 class="fw-bold">Admin</h2>
+                        <p class="mb-0">Overview of the system.</p>
+                    </div>
+                    <div class="card-container">
+                        <div class="card-hero">
+                            <div class="icon-box new-patient">
+                                <i class="fas fa-procedures"></i>
+                            </div>
+                            <div>
+                                <p class="mb-0 fs-4 fw-bold">8</p>
+                                <span class="small">Surgeries Today</span>
+                            </div>
+                        </div>
+                        <div class="card-hero">
+                            <div class="icon-box surgeries">
+                                <i class="fas fa-walking"></i>
+                            </div>
+                            <div>
+                                <p class="mb-0 fs-4 fw-bold">21</p>
+                                <span class="small">Discharges</span>
+                            </div>
+                        </div>
+                        <div class="card-hero">
+                            <div class="icon-box discharge">
+                                <i class="fas fa-pills"></i>
+                            </div>
+                            <div>
+                                <p class="mb-0 fs-5 fw-bold">Pharmacy</p>
+                                <span class="small">Stock Alert</span>
+                            </div>
+                        </div>
+                    </div>
+                    <img th:src="@{/images/dashboard/dash1.png}" class="illustration"
+                         alt="Medical team illustration"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3 mt-0">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="analytics-card" style="background: linear-gradient(135deg, #00897b, #4db6ac); color:white; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.15)">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-box me-3"><i class="fas fa-bed"></i></div>
+                        <div>
+                            <h4 class="mb-0 fw-bold">56</h4>
+                            <p class="mb-0">IPD Patients</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="analytics-card" style="background: linear-gradient(135deg, #1976d2, #64b5f6); color:white; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.15)">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-box me-3"><i class="fas fa-heartbeat"></i></div>
+                        <div>
+                            <h4 class="mb-0 fw-bold">210</h4>
+                            <p class="mb-0">OPD Patients</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div
+                        class="analytics-card"
+                        style="
+                      background: linear-gradient(135deg, #c62828, #ef5350);
+                      color: white;
+                      border-radius: 12px;
+                      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+                    "
+                >
+                    <div class="d-flex align-items-center">
+                        <div class="icon-box me-3">
+                            <i class="fas fa-procedures"></i>
+                        </div>
+                        <div>
+                            <h4 class="mb-0 fw-bold">36</h4>
+                            <p class="mb-0">ER Patients</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div
+                        class="analytics-card"
+                        style="
+                      background: linear-gradient(135deg, #ef6c00, #ffb74d);
+                      color: white;
+                      border-radius: 12px;
+                      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+                    "
+                >
+                    <div class="d-flex align-items-center">
+                        <div class="icon-box me-3">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <div>
+                            <h4 class="mb-0 fw-bold">52</h4>
+                            <p class="mb-0">Total Doctors</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3 mt-0">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div
+                        class="analytics-card"
+                        style="
+                      background: linear-gradient(135deg, #2e7d32, #81c784);
+                      color: white;
+                      border-radius: 12px;
+                      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+                    "
+                >
+                    <div class="d-flex align-items-center">
+                        <div class="icon-box me-3">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <h4 class="mb-0 fw-bold">120</h4>
+                            <p class="mb-0">Total Staff</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div
+                        class="analytics-card"
+                        style="
+                      background: linear-gradient(135deg, #6a1b9a, #ba68c8);
+                      color: white;
+                      border-radius: 12px;
+                      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+                    "
+                >
+                    <div class="d-flex align-items-center">
+                        <div class="icon-box me-3">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div>
+                            <h4 class="mb-0 fw-bold">43</h4>
+                            <p class="mb-0">Appointments</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div
+                        class="analytics-card"
+                        style="
+                      background: linear-gradient(135deg, #4527a0, #9575cd);
+                      color: white;
+                      border-radius: 12px;
+                      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+                    "
+                >
+                    <div class="d-flex align-items-center">
+                        <div class="icon-box me-3">
+                            <i class="fas fa-file-invoice"></i>
+                        </div>
+                        <div>
+                            <h4 class="mb-0 fw-bold">38</h4>
+                            <p class="mb-0">Pending Bills</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div
+                        class="analytics-card"
+                        style="
+                      background: linear-gradient(135deg, #0277bd, #4fc3f7);
+                      color: white;
+                      border-radius: 12px;
+                      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+                    "
+                >
+                    <div class="d-flex align-items-center">
+                        <div class="icon-box me-3">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <div>
+                            <h4 class="mb-0 fw-bold">82</h4>
+                            <p class="mb-0" style="white-space: nowrap">
+                                Available Beds
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row g-3 mt-0">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="analytics-card">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h6 class="mb-0 fw-bold">LATEST NOTICES</h6>
+                    <div class="notice-header-tools">
+                        <span class="badge bg-danger">3 UNREAD</span>
+                        <a href="#" class="text-decoration-none">View All &raquo;</a>
+                    </div>
+                </div>
+                <hr/>
+                <div  class="notice-item d-flex justify-content-between align-items-center py-2 border-bottom">
+                    <div class="d-flex align-items-center">
+                        <span class="text-primary me-2"
+                        ><i class="fas fa-file-alt"></i
+                        ></span>
+                        <span class="fw-semibold">HR</span>
+                    </div>
+                    <small class="text-muted">1h ago</small>
+                </div>
+
+                <div
+                        class="notice-item d-flex justify-content-between align-items-center py-2 border-bottom"
+                >
+                    <div class="d-flex align-items-center">
+                        <span class="text-warning me-2"
+                        ><i class="fas fa-cog"></i
+                        ></span>
+                        <span class="fw-semibold"
+                        >Shift Change Notification</span
+                        >
+                    </div>
+                    <small class="text-muted">2h ago</small>
+                </div>
+
+                <div
+                        class="notice-item d-flex justify-content-between align-items-center py-2 border-bottom"
+                >
+                    <div class="d-flex align-items-center">
+                        <span class="text-primary me-2"
+                        ><i class="fas fa-network-wired"></i
+                        ></span>
+                        <span class="fw-semibold">Announcement</span>
+                    </div>
+                    <small class="text-muted">1h ago</small>
+                </div>
+
+                <div
+                        class="notice-item d-flex justify-content-between align-items-center py-2 border-bottom"
+                >
+                    <div class="d-flex align-items-center">
+                        <span class="text-primary me-2"
+                        ><i class="fas fa-file"></i
+                        ></span>
+                        <span class="fw-semibold">General</span>
+                    </div>
+                    <small class="text-muted">Yesterday</small>
+                </div>
+
+                <div
+                        class="notice-item d-flex justify-content-between align-items-center py-2 border-bottom"
+                >
+                    <div class="d-flex align-items-center">
+                        <span class="text-primary me-2"
+                        ><i class="fas fa-file"></i
+                        ></span>
+                        <span class="fw-semibold">General</span>
+                    </div>
+                    <small class="text-muted">Read</small>
+                </div>
+
+                <div
+                        class="notice-item d-flex justify-content-between align-items-center py-2"
+                >
+                    <div class="d-flex align-items-center">
+                        <span class="text-warning me-2"
+                        ><i class="fas fa-tools"></i
+                        ></span>
+                        <span class="fw-semibold">Maintenance</span>
+                    </div>
+                    <small class="text-muted">2 days ago</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="analytics-card hospital-earnings">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h6 class="mb-0 fw-bold">Hospital Earnings</h6>
+                    <div>
+                        <a href="#" class="ms-2 text-decoration-none">View Report &raquo;</a>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row g-3">
+                    <div class="col-sm-6 col-12">
+                        <div
+                                class="p-3 border h-100"
+                                style="border-radius: 1px"
+                        >
+                            <h5>
+                                ₹4900 <small class="text-success">20% ↑</small>
+                            </h5>
+                            <p class="mb-0">Online Consultation</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                        <div
+                                class="p-3 border h-100"
+                                style="border-radius: 1px"
+                        >
+                            <h5>₹750 <small class="text-danger">26% ↓</small></h5>
+                            <p class="mb-0">Overall Purchases</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                        <div
+                                class="p-3 border h-100"
+                                style="border-radius: 1px"
+                        >
+                            <h5>
+                                ₹560 <small class="text-success">28% ↑</small>
+                            </h5>
+                            <p class="mb-0">Pending Invoices</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                        <div
+                                class="p-3 border h-100"
+                                style="border-radius: 1px"
+                        >
+                            <h5>
+                                ₹390 <small class="text-success">30% ↑</small>
+                            </h5>
+                            <p class="mb-0">Monthly Billing</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

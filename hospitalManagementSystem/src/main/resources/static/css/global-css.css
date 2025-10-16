@@ -1,0 +1,54 @@
+body {
+  font-family: Helvetica, sans-serif, Arial;
+  background-color: #f6f8fa;
+  margin: 0;
+  padding: 30px;
+}
+
+/* ===== Form Card ===== */
+.container {
+  max-width: 100%;
+  margin: auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== Header ===== */
+.heading {
+ position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    width: 100vw;                  /* full viewport width */
+    background-color: #01C0C8;
+    padding: 25px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    z-index: 2;
+    transform: translateY(-20px);   /* moves header upward */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* subtle shadow for floating effect */
+    bottom: 6px;
+}
+
+.heading i {
+  font-size: 28px;
+    color: #fff;
+    margin-right: 10px;
+}
+
+.heading h3 {
+   margin: 0;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}

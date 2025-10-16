@@ -1,0 +1,70 @@
+<div th:fragment="bedListFragment" xmlns:th="http://www.thymeleaf.org">
+<div class="container-fluid">
+    <div class="card shadow-sm">
+        <div class="card-header bg-info text-white d-flex justify-content-between">
+            <h5 class="mb-0">Vacant Beds</h5>
+            <a th:href="@{/allocated/beds}" class="btn btn-sm btn-success">Allotted Beds</a>
+        </div>
+
+        <!-- Messages -->
+        <div id="errorMsg" th:if="${error}" style="color:red; font-weight:bold; margin-bottom:15px;">
+            <p th:text="${error}"></p>
+        </div>
+
+        <div id="successMsg" th:if="${success}" style="color:green; font-weight:bold; margin-bottom:15px;">
+            <p th:text="${success}"></p>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-sm table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>SL.NO</th>
+                        <th>Room No</th>
+                        <th>Room Name</th>
+                        <th>Room Type</th>
+                        <th>Vacant Beds</th>
+                        <th>Total Beds</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Thymeleaf loop -->
+                    <tr th:each="room, iterStat : ${room}">
+                        <td th:text="${iterStat.count}"></td>
+                        <td th:text="${room.roomNumber}"></td>
+                        <td th:text="${room.roomName}"></td>
+                        <td th:text="${room.roomType}"></td>
+                        <td th:text="${room.vacantBeds}"></td>
+                        <td th:text="${room.totalBeds}"></td>
+                        <td>
+                            <!-- Show Assign button only if beds are vacant -->
+                            <a th:if="${room.vacantBeds > 0}"
+                               th:href="@{/assign-bed/{id}(id=${room.roomId})}"
+                               class="btn btn-sm btn-success">
+                                Assign
+                            </a>
+
+                            <!-- Otherwise show disabled button -->
+                            <span th:if="${room.vacantBeds == 0}"
+                                  class="btn btn-sm btn-secondary disabled">
+        No Beds
+  </span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <span>Copyright © 2025 Hospital Management System. All rights reserved.</span><br>
+        <span>Designed and Developed by
+      <a href="https://kavyainfoweb.com/" target="_blank">Kavya Infoweb Pvt. Ltd.</a>
+    </span>
+    </footer>
+</div>
+
+</div>

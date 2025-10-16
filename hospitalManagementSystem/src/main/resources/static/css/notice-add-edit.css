@@ -1,0 +1,134 @@
+/* ========================================
+           CSS VARIABLES
+           ======================================== */
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --light-gray: #f8f9fa;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ========================================
+           GENERAL STYLES
+           ======================================== */
+        body {
+            background-color: #f5f7fb;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ========================================
+           FORM CONTAINER
+           ======================================== */
+        .form-container {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* ========================================
+           FORM ELEMENTS
+           ======================================== */
+        .form-label {
+            font-weight: 500;
+            color: #495057;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control, .form-select {
+            border-radius: var(--border-radius);
+            padding: 0.6rem 0.75rem;
+            border: 1px solid #dee2e6;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.25);
+        }
+
+        /* ========================================
+           BUTTONS
+           ======================================== */
+        .btn-primary {
+            background-color: var(--primary-color);
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline-secondary {
+            border-radius: var(--border-radius);
+            padding: 0.6rem 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: #e9ecef;
+            transform: translateY(-1px);
+        }
+
+        /* ========================================
+           TARGET AUDIENCE SECTION
+           ======================================== */
+        .target-audience-container {
+            background-color: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+        }
+
+        .form-check {
+            margin-bottom: 0.5rem;
+        }
+
+        .form-check-input:checked {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .form-check-label {
+            color: #495057;
+            cursor: pointer;
+        }
+
+        /* ========================================
+           SECTION TITLES
+           ======================================== */
+        .section-title {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin: 2rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        /* ========================================
+           ALERTS
+           ======================================== */
+        .alert {
+            border-radius: var(--border-radius);
+            border: none;
+            box-shadow: var(--box-shadow);
+        }
+
+        .alert-success {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .alert-danger {
+            background-color: #fee2e2;
+            color: #b91c1c;
+        }

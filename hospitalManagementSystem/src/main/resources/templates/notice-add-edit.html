@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notice Board - Add/Edit</title>
+    
+    <!-- Bootstrap CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    
+    <!-- TinyMCE Editor - Self-hosted version -->
+    <script src="https://cdn.jsdelivr.net/npm/tinymce@6/tinymce.min.js"></script>
+    
+    <style>
+
+    </style>
+</head>
+<body>
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="form-container">
+                <!-- ========================================
+                     FORM HEADER
+                     ======================================== -->
+                <h2 class="mb-4" th:text="${notice.noticeId != null ? 'Edit Notice' : 'Create New Notice'}"></h2>
+
+                <!-- ========================================
+                     ERROR/SUCCESS MESSAGES
+                     ======================================== -->
+                <div th:if="${error}" class="alert alert-danger" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                    <span th:text="${error}"></span>
+                </div>
+
+                <div th:if="${success}" class="alert alert-success" role="alert">
+                    <i class="bi bi-check-circle-fill me-2"></i>
+                    <span th:text="${success}"></span>
+                </div>
+
+                <!-- ========================================
+                     NOTICE FORM
+                     ======================================== -->
+                <form th:action="${notice.noticeId} != null ? @{/notice/edit/{id}(id=${notice.noticeId})} : @{/notice/add}" 
+                      th:object="${notice}" 
+                      method="post" 
+                      enctype="multipart/form-data">
+
+                    <!-- TITLE FIELD -->
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
+                        <input type="text" 
+                               th:field="*{noticeTitle}" 
+                               id="title" 
+                               class="form-control" 
+                               placeholder="Enter notice title" 
+                               required>
+                    </div>
+
+                    <!-- DESCRIPTION FIELD (Rich Text Editor) -->
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
+                        <textarea th:field="*{noticeDescription}" 
+                                  id="description" 
+                                  class="form-control" 
+                                  rows="6"></textarea>
+                    </div>
+
+                    <!-- START DATE FIELD -->
+                    <div class="mb-3">
+                        <label for="startDate" class="form-label">Start Date <span class="text-danger">*</span></label>
+                        <input type="datetime-local" 
+                               th:field="*{noticeStartDate}" 
+                               id="startDate" 
+                               class="form-control"
+                               required>
+                    </div>
+
+                    <!-- END DATE FIELD -->
+                    <div class="mb-3">
+                        <label for="endDate" class="form-label">End Date <span class="text-danger">*</span></label>
+                        <input type="datetime-local"
+                               th:field="*{noticeEndDate}"
+                               id="endDate"
+                               class="form-control"
+                               required>
+                    </div>
+
+                    <!-- ========================================
+                         TARGET AUDIENCE SECTION
+                         Select which roles can view this notice
+                         ======================================== -->
+                    <h5 class="section-title">Target Audience <span class="text-danger">*</span></h5>
+                    <div class="target-audience-container mb-4">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-6" th:each="r, iterStat : ${roles}">
+                                <div class="form-check">
+                                    <input class="form-check-input"
+                                           type="checkbox"
+                                           th:field="*{targetAudienceIds}"
+                                           th:value="${r.roleId}"
+                                           th:checked="${targetAudience != null and targetAudience.contains(r.roleId)}"
+                                           th:id="'Role_' + ${iterStat.index}">
+                                    <label class="form-check-label" 
+                                           th:for="'Role_' + ${iterStat.index}" 
+                                           th:text="${r.roleName}"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ========================================
+                         ATTACHMENT SECTION
+                         ======================================== -->
+
+                    <h5 class="section-title">Attachment</h5>
+                    <div class="mb-4">
+
+                        <!-- CREATE MODE: Show file input when no attachment exists -->
+                        <div th:if="${notice.noticeId == null}">
+                            <label for="newAttachment" class="form-label">Upload Attachment:</label>
+                            <input type="file"
+                                   th:field="*{attachment}"
+                                   id="newAttachment"
+                                   class="form-control"
+                                   accept="image/*,.pdf,.doc,.docx,.txt,.xls,.xlsx"
+                                   onchange="previewNewFile()">
+
+                            <small class="form-text text-muted">
+                                You can upload one file (image, PDF, or document).
+                            </small>
+
+                            <!-- New file preview before submission -->
+                            <div id="newFilePreview" class="mt-3 d-none">
+                                <p class="text-muted mb-2"><strong>File Preview:</strong></p>
+                                <img id="newImagePreview" src="#" alt="Preview"
+                                     style="max-width: 300px; max-height: 200px; display: none;"
+                                     class="img-thumbnail">
+                                <div id="newFileInfo" class="d-none p-2 bg-light rounded">
+                                    <i class="bi bi-file-earmark-text"></i> <span id="newFileName"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- EDIT MODE: Show existing file with change option -->
+                        <div th:if="${notice.noticeId != null}">
+                            <p class="text-muted mb-2"><strong>Current Attachment:</strong></p>
+
+                            <div class="border p-2 d-inline-block mb-3">
+                                <a th:href="@{/get/attachment/view/{id}(id=${notice.attachmentId})}" target="_blank">
+                                    <img th:if="${attachment != null and attachment.fileType != null and attachment.fileType.startsWith('image/')}"
+                                         th:src="@{/get/attachment/view/{id}(id=${noticeDTO.attachmentId})}"
+                                         alt="Attachment Preview"
+                                         style="max-width: 300px; max-height: 200px;"
+                                         class="img-thumbnail">
+                                    <div th:unless="${attachment != null and attachment.fileType != null and attachment.fileType.startsWith('image/')}"
+                                         class="text-center p-3 bg-light">
+                                        <i class="bi bi-file-earmark-text" style="font-size: 3rem;"></i>
+                                        <p class="mt-2 mb-0">View File</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Change File Input -->
+                            <div class="mt-3">
+                                <label for="changeAttachment" class="form-label">Change Attachment:</label>
+                                <input type="file"
+                                       th:field="*{attachment}"
+                                       id="changeAttachment"
+                                       class="form-control"
+                                       accept="image/*,.pdf,.doc,.docx,.txt,.xls,.xlsx"
+                                       onchange="previewChangeFile()">
+                                <small class="form-text text-muted">
+                                    Select a new file to replace the existing attachment.
+                                </small>
+                            </div>
+
+                            <!-- Preview new changed file -->
+                            <div id="changeFilePreview" class="mt-3 d-none">
+                                <p class="text-muted mb-2"><strong>New File Preview:</strong></p>
+                                <img id="changedImagePreview" src="#" alt="Preview"
+                                     style="max-width: 300px; max-height: 200px; display: none;"
+                                     class="img-thumbnail">
+                                <div id="changedFileInfo" class="d-none p-2 bg-light rounded">
+                                    <i class="bi bi-file-earmark-text"></i> <span id="changedFileName"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- ========================================
+                         FORM ACTIONS
+                         ======================================== -->
+                    <div class="d-flex justify-content-between mt-4">
+                        <a th:href="@{/notice/list}" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left me-2"></i>Back to List
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-save me-2"></i>
+                            <span th:text="${notice.noticeId != null ? 'Update Notice' : 'Publish Notice'}"></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    /* ========================================
+       FUNCTION: previewNewFile()
+       Purpose: Preview selected file when creating new notice
+       ======================================== */
+    function previewNewFile() {
+        const fileInput = document.getElementById("newAttachment");
+        const previewContainer = document.getElementById("newFilePreview");
+        const img = document.getElementById("newImagePreview");
+        const info = document.getElementById("newFileInfo");
+        const fileName = document.getElementById("newFileName");
+
+        if (fileInput.files && fileInput.files[0]) {
+            const file = fileInput.files[0];
+            previewContainer.classList.remove("d-none");
+
+            if (file.type.startsWith("image/")) {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    img.src = e.target.result;
+                    img.style.display = "block";
+                    info.classList.add("d-none");
+                };
+                reader.readAsDataURL(file);
+            } else {
+                img.style.display = "none";
+                info.classList.remove("d-none");
+                fileName.textContent = file.name;
+            }
+        }
+    }
+
+    /* ========================================
+       FUNCTION: previewChangeFile()
+       Purpose: Preview newly selected file when editing existing notice
+       ======================================== */
+    function previewChangeFile() {
+        const fileInput = document.getElementById("changeAttachment");
+        const previewContainer = document.getElementById("changeFilePreview");
+        const img = document.getElementById("changedImagePreview");
+        const info = document.getElementById("changedFileInfo");
+        const fileName = document.getElementById("changedFileName");
+
+        if (fileInput.files && fileInput.files[0]) {
+            const file = fileInput.files[0];
+            previewContainer.classList.remove("d-none");
+
+            if (file.type.startsWith("image/")) {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    img.src = e.target.result;
+                    img.style.display = "block";
+                    info.classList.add("d-none");
+                };
+                reader.readAsDataURL(file);
+            } else {
+                img.style.display = "none";
+                info.classList.remove("d-none");
+                fileName.textContent = file.name;
+            }
+        }
+    }
+
+    /* ========================================
+       TINYMCE INITIALIZATION
+       ======================================== */
+    document.addEventListener('DOMContentLoaded', function() {
+        tinymce.init({
+            selector: '#description',
+            height: 300,
+            width:200,
+            menubar: false,
+            plugins: [
+                'advlist', 'lists', 'link', 'image', 'code',
+                'table', 'wordcount'
+            ],
+            toolbar:
+                'undo redo | blocks | bold italic forecolor backcolor | ' +
+                'alignleft aligncenter alignright alignjustify | ' +
+                'bullist numlist outdent indent | removeformat | code',
+            content_style:
+                'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+            entity_encoding: 'raw',
+            forced_root_block: 'p',
+            force_br_newlines: false,
+            force_p_newlines: true,
+            valid_elements: '*[*]',
+            verify_html: false,
+            setup: editor => editor.on('change', () => editor.save()),
+            promotion: false,
+            branding: false
+        });
+    });
+</script>
+
+
+<!-- Message handler script -->
+<script th:src="@{/javascript/message.js}"></script>
+
+</body>
+</html>

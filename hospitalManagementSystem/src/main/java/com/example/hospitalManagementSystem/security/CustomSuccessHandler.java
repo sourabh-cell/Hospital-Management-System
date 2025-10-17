@@ -21,37 +21,35 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler
     {
 
 
-        System.out.println("Authorities:");
-        for (GrantedAuthority authority : authentication.getAuthorities()) {
-            System.out.println(" - " + authority.getAuthority());
-        }
-
-        //check role of user
-        String redirectUrl = request.getContextPath();
 
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-        // Check for roles only
+        String redirectUrl = "/dashboard/default"; // fallback
+
+
+
         if (authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_SUPER_ADMIN"))) {
-            redirectUrl = "/super_admin";
+            redirectUrl = "/dashboard/admin";
         } else if (authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
-            redirectUrl = "/admin";
+            redirectUrl = "/dashboard/admin";
         } else if (authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_DOCTOR"))) {
-            redirectUrl = "/doctor";
+            redirectUrl = "/dashboard/doctor";
         } else if (authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_HEADNURSE"))) {
-            redirectUrl = "/headnurse";
+            redirectUrl = "/dashboard/headnurse";
         } else if (authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_PHARMACIST"))) {
-            redirectUrl = "/pharmacist";
+            redirectUrl = "/dashboard/pharmacist";
         } else if (authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_ACCOUNTANT"))) {
-            redirectUrl = "/accountant";
+            redirectUrl = "/dashboard/accountant";
         } else if (authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_HR"))) {
-            redirectUrl = "/hr";
+            redirectUrl = "/dashboard/hr";
         } else if (authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_LABORATORIST"))) {
-            redirectUrl = "/laboratorist";
+            redirectUrl = "/dashboard/laboratorist";
         } else if (authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_INSURANCE"))) {
-            redirectUrl = "/insurance";
+            redirectUrl = "/dashboard/insurance";
         } else if (authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_RECEPTIONIST"))) {
-            redirectUrl = "/receptionist";
+            redirectUrl = "/dashboard/receptionist";
         }
+
+
         response.sendRedirect(redirectUrl);
     }
 }

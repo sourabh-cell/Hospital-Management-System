@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.client.RestTemplate;
 
 @Configuration
 @EnableMethodSecurity(prePostEnabled = true)  //@Preauthorized will stop access of unathorized user
@@ -34,6 +35,12 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder()
     {
         return new BCryptPasswordEncoder();
+    }
+
+    // RestTemplate Bean
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 
     // 2. DaoAuthenticationProvider (connects DB users + password check)
@@ -61,7 +68,7 @@ public class SecurityConfig {
         http.
                 csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth->auth
-                        .requestMatchers("/register","/register/**","/login", "/css/**", "/js/**" ,"/images/**","/vendors/**").permitAll()
+                                .requestMatchers("/register","/register/**","/api/**","/login","/forgot-password","/request","/validate","/resend-otp","/reset","/css/**", "/javascript/**" ,"/images/**","/vendors/**").permitAll()
 
                                 //admin can access all endpoint
                                 .requestMatchers("/super_admin/**").hasRole("SUPER_ADMIN")

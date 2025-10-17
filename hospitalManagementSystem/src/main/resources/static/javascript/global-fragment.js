@@ -2,11 +2,23 @@ console.log('under global-fragment.js');
 
 // ========================== ROUTES CONFIG ==========================
 const routes = {
+  '/dashboard/default': {
+    endpoint: '/fragment/dashboard/default',
+    css: [''],
+    js: ['']
+  },
   '/dashboard/admin': {
     endpoint: '/fragment/dashboard/admin',
     css: [''],
     js: ['']
   },
+
+  '/dashboard/doctor': {
+    endpoint: '/fragment/dashboard/doctor',
+    css: [''],
+    js: ['']
+  },
+
   '/ambulance/add': {
     endpoint: '/fragment/ambulance/add',
     css: ['/css/ambulance-add.css'],
@@ -132,6 +144,6 @@ window.addEventListener('DOMContentLoaded', () => {
     if (routes[path]) {
         loadFragment(routes[path].endpoint, routes[path].css, routes[path].js);
     } else {
-        navigateTo('/dashboard/admin'); // default page
+        navigateTo('/dashboard/default'); // default page
     }
 });

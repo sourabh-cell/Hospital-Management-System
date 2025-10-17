@@ -15,13 +15,13 @@ public class DoctorController {
     CurrentUserAndPermissionService currentUserAndPermissionService;
 
 
-    @GetMapping("/doctor")
-    public String doctorPage(Model model) {
-        System.out.println("doctor controller");
-        model.addAttribute("user",currentUserAndPermissionService.getCurrentUser());
-        model.addAttribute("permissions",currentUserAndPermissionService.getPermissions());
-        return "index"; // doctor.html
-    }
+//    @GetMapping("/doctor")
+//    public String doctorPage(Model model) {
+//        System.out.println("doctor controller");
+//        model.addAttribute("user",currentUserAndPermissionService.getCurrentUser());
+//        model.addAttribute("permissions",currentUserAndPermissionService.getPermissions());
+//        return "index"; // doctor.html
+//    }
 
 
     @GetMapping("/doctor/add")

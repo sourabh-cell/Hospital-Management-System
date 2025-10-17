@@ -1,0 +1,39 @@
+       body{
+    font-family:  Helvetica, sans-serif,Arial;
+}
+
+.form-header {
+    background-color: #01C0C8;
+    color: white;
+    padding: 25px 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.form-header h2 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+}
+
+
+.custom-btn {
+  background-color: #01C0C8 !important;
+  border-color: #01C0C8 !important;
+  color: #fff !important;
+}
+
+.custom-btn:hover {
+  background-color: #019aa1 !important; /* Thoda darker hover effect */
+  border-color: #019aa1 !important;
+}
+
+.col-md-6{
+  margin-top: 20px;
+}
+
+.gap{
+  margin-right: 10px
+}

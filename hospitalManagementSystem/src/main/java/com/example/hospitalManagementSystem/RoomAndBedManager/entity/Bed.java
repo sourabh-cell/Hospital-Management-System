@@ -1,6 +1,7 @@
 package com.example.hospitalManagementSystem.RoomAndBedManager.entity;
 
 import com.example.hospitalManagementSystem.audit.Auditable;
+
 import com.example.hospitalManagementSystem.enums.Enums;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -109,6 +109,20 @@ public class Enums {
         public String getLabel() {
             return label;
         }
+
+
+    }
+
+    public enum BedStatus {
+        VACCANT,
+        OCCUPIED
+    }
+
+
+    public enum RoomStatus {
+        AVAILABLE,
+        UNAVAILABLE,
+        UNDER_MAINTENANCE
     }
 
 }

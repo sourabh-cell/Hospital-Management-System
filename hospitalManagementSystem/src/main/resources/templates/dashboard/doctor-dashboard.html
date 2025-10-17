@@ -1,4 +1,218 @@
-<!-- File: templates/fragments/dashboard.html -->
 <div th:fragment="doctor-dashboard" xmlns:th="http://www.w3.org/1999/xhtml">
-    <h1>Hello Doctor</h1>>
+<div class="header-toolbar d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center">
+        <a class="text-decoration-none text-dark d-flex align-items-center" href="#">
+            <i class="fas fa-home me-2"></i>Home
+        </a>
+<!--        <span class="text-muted mx-2">  Doctor Dashboard </span>-->
+    </div>
+    <div class="d-flex align-items-center">
+        <!-- Updated button -->
+        <button class="btn make-appoint rounded-pill me-2">
+            <i class="fas fa-calendar-plus me-1"></i> Set Availability
+        </button>
+        <div class="btn-group">
+            <button type="button" class="btn btn-secondary dropdown-toggle rounded-pill" data-bs-toggle="dropdown" aria-expanded="false">
+                Today
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">Today</a></li>
+                <li><a class="dropdown-item" href="#">This Week</a></li>
+                <li><a class="dropdown-item" href="#">This Month</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="jumbotron-hero">
+                <div>
+                    <h5 class="fw-normal">Good Morning.</h5>
+                    <h2 class="fw-bold">Dr. Amit Mishra</h2>
+                    <p class="mb-0">Here’s your overview for today.</p>
+                </div>
+                <div class="card-container">
+                    <div class="card-hero">
+                        <div class="icon-box new-patient"><i class="fas fa-calendar-check"></i></div>
+                        <div>
+                            <p class="mb-0 fs-4 fw-bold">150</p>
+                            <span class="small">Total Appointments</span>
+                        </div>
+                    </div>
+                    <div class="card-hero">
+                        <div class="icon-box surgeries"><i class="fas fa-check-circle"></i></div>
+                        <div>
+                            <p class="mb-0 fs-4 fw-bold">1406</p>
+                            <span class="small">Completed Appointments</span>
+                        </div>
+                    </div>
+                    <div class="card-hero">
+                        <div class="icon-box discharge"><i class="fas fa-times-circle"></i></div>
+                        <div>
+                            <p class="mb-0 fs-4 fw-bold">2075</p>
+                            <span class="small">Cancelled Appointments</span>
+                        </div>
+                    </div>
+                    <div class="card-hero">
+                        <div class="icon-box new-patient"><i class="fas fa-user-clock"></i></div>
+                        <div>
+                            <p class="mb-0 fs-4 fw-bold">334</p>
+                            <span class="small">Follow-up Appointments</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- <img src="assets/images/dashboard/doctor.png" class="illustration" alt="Doctor illustration"/> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Doctor-specific analytics -->
+    <div class="row g-3 mt-0">
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="analytics-card" style="background: linear-gradient(135deg, #1976D2, #64B5F6); color:white;">
+                <div class="d-flex align-items-center">
+                    <div class="icon-box me-3"><i class="fas fa-stethoscope"></i></div>
+                    <div>
+                        <h4 class="mb-0 fw-bold">25</h4>
+                        <p class="mb-0">Total Consultations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="analytics-card" style="background: linear-gradient(135deg, #C62828, #EF5350); color:white;">
+                <div class="d-flex align-items-center">
+                    <div class="icon-box me-3"><i class="fas fa-syringe"></i></div>
+                    <div>
+                        <h4 class="mb-0 fw-bold">4</h4>
+                        <p class="mb-0">Upcoming Surgeries</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="analytics-card" style="background: linear-gradient(135deg, #6A1B9A, #BA68C8); color:white;">
+                <div class="d-flex align-items-center">
+                    <div class="icon-box me-3"><i class="fas fa-user-clock"></i></div>
+                    <div>
+                        <h4 class="mb-0 fw-bold">7</h4>
+                        <p class="mb-0">Follow-Up Patients</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="analytics-card" style="background: linear-gradient(135deg, #0277BD, #4FC3F7); color:white; height: 113px;">
+                <div class="d-flex align-items-center">
+                    <div class="icon-box me-3"><i class="fas fa-envelope"></i></div>
+                    <div>
+                        <h4 class="mb-0 fw-bold">12</h4>
+                        <p class="mb-0">Messages</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Latest Updates & Schedule -->
+    <div class="row g-3 mt-0">
+        <!-- Latest Updates -->
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="analytics-card">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h6 class="mb-0 fw-bold">LATEST NOTICES</h6>
+                    <div class="notice-header-tools">
+                        <span class="badge bg-danger">2 NEW</span>
+                        <a href="#" class="text-decoration-none">View All &raquo;</a>
+                    </div>
+                </div>
+                <hr />
+                <div class="notice-item d-flex justify-content-between align-items-center py-2 border-bottom">
+                    <div class="d-flex align-items-center">
+                        <span class="text-primary me-2"><i class="fas fa-vials"></i></span>
+                        <span class="fw-semibold">Lab Report Ready</span>
+                    </div>
+                    <small class="text-muted">1h ago</small>
+                </div>
+                <div class="notice-item d-flex justify-content-between align-items-center py-2 border-bottom">
+                    <div class="d-flex align-items-center">
+                        <span class="text-warning me-2"><i class="fas fa-bell"></i></span>
+                        <span class="fw-semibold">Surgery Reminder</span>
+                    </div>
+                    <small class="text-muted">Today, 3 PM</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- My Schedule -->
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="analytics-card hospital-earnings">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h6 class="mb-0 fw-bold">My Schedule</h6>
+                    <div>
+                        <a href="#" class="ms-2 text-decoration-none">View Calendar &raquo;</a>
+                    </div>
+                </div>
+                <hr />
+                <div class="row g-3">
+                    <div class="col-sm-6 col-12">
+                        <div class="p-3 border h-100">
+                            <h5>10 <small class="text-success">↑</small></h5>
+                            <p class="mb-0">Morning Appointments</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                        <div class="p-3 border h-100">
+                            <h5>5 <small class="text-danger">↓</small></h5>
+                            <p class="mb-0">Afternoon Patients</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                        <div class="p-3 border h-100">
+                            <h5>3</h5>
+                            <p class="mb-0">Evening Surgeries</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                        <div class="p-3 border h-100">
+                            <h5>2 hrs</h5>
+                            <p class="mb-0">Available Slot</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- content-wrapper ends -->
+<!-- partial:partials/_footer.html -->
+<footer class="footer">
+    <div
+            class="d-sm-flex justify-content-center justify-content-sm-between"
+    >
+              <span
+                      class="text-muted text-center text-sm-left d-block d-sm-inline-block"
+              >Copyright © 2025 Hospital Management System. All rights
+                reserved.
+                  <!-- <a href="#"> Terms of use</a
+                  ><a href="#">Privacy Policy</a> -->
+              </span>
+        <span
+                class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"
+        >Designed and Developed by
+                <a
+                        href="https://kavyainfoweb.com/"
+                        target="_blank"
+                        style="text-decoration: none; color: rgb(2, 62, 62)"
+                >Kavya Infoweb Pvt. Ltd.</a
+                ></span
+        >
+    </div>
+</footer>
 </div>

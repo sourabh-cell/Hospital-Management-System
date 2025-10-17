@@ -28,5 +28,4 @@ public class BedDTO {
     private Enums.BedStatus status;
 
 
-
 }

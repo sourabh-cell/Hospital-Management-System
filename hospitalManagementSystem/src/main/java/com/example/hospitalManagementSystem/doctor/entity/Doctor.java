@@ -3,6 +3,7 @@ package com.example.hospitalManagementSystem.doctor.entity;
 import com.example.hospitalManagementSystem.audit.Auditable;
 import com.example.hospitalManagementSystem.authentication.entity.UserEntity;
 import com.example.hospitalManagementSystem.department.entity.Department;
+import com.example.hospitalManagementSystem.enums.Enums;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,11 +38,8 @@ public class Doctor extends Auditable {
 
     private String licenseNumber;
 
-    private enum AvailabilityStatus {
-       ON_LEAVE,
-        RESIGNED,
-        ACTIVE
-    }
+    @Enumerated(EnumType.STRING)
+    private Enums.AvailabilityStatus availabilityStatus;
 
     @OneToOne
     @JoinColumn(name = "user_id")

@@ -225,4 +225,27 @@
         });
     });
 
+     // ---------------- FILE SIZE VALIDATION ----------------
+        const MAX_FILE_SIZE_MB = 5; // Change limit here
+        const MAX_FILE_SIZE = MAX_FILE_SIZE_MB * 1024 * 1024;
+
+        function validateFileSize(input) {
+            const file = input.files[0];
+            if (file && file.size > MAX_FILE_SIZE) {
+                alert(`File "${file.name}" exceeds ${MAX_FILE_SIZE_MB} MB limit!`);
+                input.value = ""; // clear invalid file
+            }
+        }
+
+        const profilePicInput = document.querySelector('input[name="profilePic"]');
+        const idProofPicInput = document.querySelector('input[name="idProofPic"]');
+
+        profilePicInput?.addEventListener("change", function () {
+            validateFileSize(this);
+        });
+
+        idProofPicInput?.addEventListener("change", function () {
+            validateFileSize(this);
+        });
+
 })();

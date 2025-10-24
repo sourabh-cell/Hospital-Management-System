@@ -13,11 +13,10 @@
 
         <!-- Bootstrap CSS -->
         <link
-                th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css}"
+                href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
                 rel="stylesheet"
                 integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-                crossorigin="anonymous"
-        />
+                crossorigin="anonymous" />
 
         <!-- Icon Libraries -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -283,7 +282,7 @@
                     <div class="collapse" id="hr" data-bs-parent="#sidebar">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item">
-                                <a class="nav-link" th:href="@{add-new-employee.html}"
+                                <a class="nav-link" href="javascript:void(0)" data-nav="/register"
                                 >Add Employee</a
                                 >
                             </li>
@@ -309,15 +308,16 @@
                     <div class="collapse" id="depart" data-bs-parent="#sidebar">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item">
-                                <a class="nav-link" th:href="@{add-new-department.html}"
+                                <a class="nav-link" href="javascript:void(0)" data-nav="/department/registration"
                                 >Add Department</a
                                 >
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" th:href="@{manage-department.html}"
-                                >Manage Departments
-                                </a>
+                                <a class="nav-link" href="javascript:void(0)" data-nav="/department/list"
+                                >Department List</a
+                                >
                             </li>
+
                         </ul>
                     </div>
                 </li>
@@ -1230,6 +1230,9 @@
     </div>
 </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+        crossorigin="anonymous"></script>
 
 <script th:src="@{/lib/js/vendor.bundle.base.js}"></script>
 <script th:src="@{/javascript/hoverable-collapse.js}"></script>
@@ -1239,21 +1242,29 @@
 <script th:src="@{/javascript/sidebar.js}"></script>
 <script th:src="@{/javascript/message.js}"></script>
 <script th:src="@{/javascript/global-fragment.js}"></script>
+<!--<script th:src="@{/javascript/registration.js}"></script>-->
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('[data-nav]').forEach(el => {
-            el.addEventListener('click', e => {
-                e.preventDefault();
-                navigateTo(el.dataset.nav);
-            });
-        });
-    });
+
 
     function toggleSidebar() {
         document.getElementById("sidebar").classList.toggle("collapsed");
         document.getElementById("main-content").classList.toggle("collapsed");
     }
+
+
+<!--    //hide message-->
+    window.addEventListener('DOMContentLoaded', (event) => {
+    setTimeout(() => {
+        const errorDiv = document.getElementById('errorMsg');
+        if (errorDiv) errorDiv.style.display = 'none';
+
+        const successDiv = document.getElementById('successMsg');
+        if (successDiv) successDiv.style.display = 'none';
+
+
+    }, 5000);
+});
 </script>
 </body>
 </html>

@@ -3,7 +3,6 @@
 
 <h2>Department List</h2>
 
-<a href="/departments/new">+ Add Department</a>
 <br/><br/>
 
 <table border="1">
@@ -22,17 +21,9 @@
 
         <!-- ✅ Action Buttons -->
         <td>
-            <!-- View -->
-            <a th:href="@{/department/view/{id}(id=${dept.id})}" sec:authorize="hasAuthority('DEPARTMENT_VIEW')">View</a> |
-
             <!-- Update -->
-            <a th:href="@{/department/update/{id}(id=${dept.id})}" sec:authorize="hasAuthority('DEPARTMENT_UPDATE')">Update</a> |
+            <a href="javascript:void(0);"  th:attr="data-nav='/department/update/' + ${dept.id}" sec:authorize="hasAuthority('DEPARTMENT_UPDATE')">Update</a> |
 
-            <!-- Delete -->
-            <a th:href="@{/department/delete/{id}(id=${dept.id})}" sec:authorize="hasAuthority('DEPARTMENT_DELETE')"
-               onclick="return confirm('Are you sure you want to delete this department?')">
-                Delete
-            </a>
         </td>
     </tr>
 </table>

@@ -68,7 +68,7 @@ public class SecurityConfig {
         http.
                 csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth->auth
-                                .requestMatchers("/register","/register/**","/api/**","/login","/forgot-password","/request","/validate","/resend-otp","/reset","/css/**", "/javascript/**" ,"/images/**","/vendors/**").permitAll()
+                                .requestMatchers("/fragment/register","/register","/register/**","/api/**","/login","/forgot-password","/request","/validate","/resend-otp","/reset","/css/**", "/javascript/**" ,"/images/**","/vendors/**").permitAll()
 
                                 //admin can access all endpoint
                                 .requestMatchers("/super_admin/**").hasRole("SUPER_ADMIN")

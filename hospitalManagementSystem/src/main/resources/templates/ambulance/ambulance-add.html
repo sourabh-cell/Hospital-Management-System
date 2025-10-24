@@ -13,13 +13,14 @@
             <!-- Form Body -->
             <div class="card-body p-4">
 
-                <!-- Error and Success Messages -->
-                <div id="errorMsg" class="alert alert-danger d-none" role="alert">
-                    <p class="mb-0"></p>
+                <!-- Success Message -->
+                <div th:if="${success}" id="successMsg" class="alert alert-success">
+                    <span th:text="${success}"></span>
                 </div>
 
-                <div id="successMsg" class="alert alert-success d-none" role="alert">
-                    <p class="mb-0"></p>
+                <!-- Error Message -->
+                <div th:if="${error}" id="errorMsg" class="alert alert-danger">
+                    <span th:text="${error}"></span>
                 </div>
 
                 <!-- FORM -->

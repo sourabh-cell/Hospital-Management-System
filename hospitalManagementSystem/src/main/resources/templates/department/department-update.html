@@ -4,7 +4,9 @@
 <h2>Update Department</h2>
 
 <form th:action="@{/department/update/{id}(id=${department.id})}"
-      th:object="${department}" method="post">
+      th:object="${department}" method="post" data-ajax="true"
+      th:attr="data-fragment-path='/department/update/' + ${department.id}"
+      >
 
     <label>ID:</label>
     <input type="text" th:field="*{id}" readonly/><br/><br/>
@@ -19,7 +21,7 @@
     <textarea th:field="*{description}"></textarea><br/><br/>
 
     <button type="submit">Update</button>
-    <a href="/departments/list">Cancel</a>
+    <a href="javascript:void(0);" onclick="history.back()">Cancel</a>
 </form>
 
 </div>>

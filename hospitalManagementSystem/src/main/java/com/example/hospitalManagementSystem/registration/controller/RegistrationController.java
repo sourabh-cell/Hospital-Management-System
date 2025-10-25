@@ -52,33 +52,9 @@ private final RegistrationDtoValidator registrationDtoValidator;
 
 
     @GetMapping("/register")
-    public String showRegistrationForm(@ModelAttribute("registrationDto") RegistrationDto dto, @RequestParam(value = "success", required = false) String success, Model model) {
-
-        List<Role> allRoles = roleRepo.findAll();
-        List<Role> filteredRoles = allRoles.stream()
-                .filter(role -> !role.getRoleName().equals("ROLE_SUPER_ADMIN") && !role.getRoleName().equals("ROLE_ADMIN"))
-                .map(role -> {
-                    Role displayRole = new Role();
-                    displayRole.setRoleId(role.getRoleId());
-                    displayRole.setRoleName(role.getRoleName().replace("ROLE_", "")); // Remove prefix
-                    return displayRole;
-                })
-                .toList();
-
-
-//        model.addAttribute("registrationDto", new RegistrationDto());
-
-        // Inject roles and experience options
-        if (success != null) {
-            model.addAttribute("successMessage", "Registration completed successfully!");
-        }
-
-
-        model.addAttribute("roles", filteredRoles);
-        model.addAttribute("departments", departmentRepo.findAll());
-        model.addAttribute("experienceOptions", Enums.ExperienceLevel.values());
-
-        return "registration_form3"; //
+    public String showRegistrationForm()
+    {
+        return "index";
     }
 
 //    ------------------------------------------------------------------------------------------
@@ -127,7 +103,8 @@ private final RegistrationDtoValidator registrationDtoValidator;
             model.addAttribute("departments", departmentRepo.findAll());
             model.addAttribute("experienceOptions", Enums.ExperienceLevel.values());
             log.info("Validation errors: {}", result.getAllErrors());
-            return "registration_form3";
+            return "registration-form :: registrationFormFragment";
+
         }
 
 
@@ -145,11 +122,13 @@ private final RegistrationDtoValidator registrationDtoValidator;
             model.addAttribute("departments", departmentRepo.findAll());
             model.addAttribute("experienceOptions", Enums.ExperienceLevel.values());
             model.addAttribute("errorMessage", ex.getMessage());
-            return "registration_form3";
+
+            return "registration-form :: registrationFormFragment";
         }
 
+        model.addAttribute("successMsg","Registration Successful!");
+        return "registration-form :: registrationFormFragment";
 
-        return "redirect:/register?success";
     }
 
 

@@ -2,7 +2,7 @@
 
 <h2>Create New Department</h2>
 
-<form th:action="@{/department/add}" th:object="${department}" method="post">
+<form th:action="@{/department/add}" th:object="${department}" method="post" data-ajax="true" data-fragment-path="/department/add">
 
     <label for="department_name">Department Name:</label>
     <input type="text" id="department_name" name="department_name" required/>

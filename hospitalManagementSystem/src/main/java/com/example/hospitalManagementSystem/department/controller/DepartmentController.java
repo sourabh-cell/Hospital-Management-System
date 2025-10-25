@@ -28,10 +28,10 @@ public class DepartmentController {
 
     @GetMapping("/department/registration")
     @PreAuthorize("hasAuthority('DEPARTMENT_ADD')")
-    public String departmentForm(Model model)
+    public String departmentForm()
     {
-        model.addAttribute("department",new DepartmentDTO());
-        return "department-form";
+
+        return "index";
     }
 
 
@@ -53,7 +53,7 @@ public class DepartmentController {
     public String listDepartments(Model  model)
     {
         model.addAttribute("departments",departmentService.findAll());
-        return "department-list";
+        return "index";
     }
 
     @GetMapping("/department/delete/{id}")
@@ -66,19 +66,19 @@ public class DepartmentController {
 
     @GetMapping("/department/update/{id}")
     @PreAuthorize("hasAuthority('DEPARTMENT_UPDATE')")
-    public String showUpdate(@PathVariable Long id,Model  model)
+    public String showUpdate()
     {
-        DepartmentDTO department =  departmentService.findById(id);
-        model.addAttribute("department",department);
-        return "department-update";
+        return "index";
     }
 
     @PostMapping("/department/update/{id}")
     @PreAuthorize("hasAuthority('DEPARTMENT_UPDATE')")
-    public String updateDepartment(@PathVariable Long id,@ModelAttribute("department") Department department)
-    {
-        departmentService.udateDepartment(id,department);
-        return "redirect:/department/list";
+    public String updateDepartment(@PathVariable Long id, @ModelAttribute("department") Department department, Model model) {
+        departmentService.udateDepartment(id, department);
+
+        // Load all departments again for the list fragment
+        model.addAttribute("departments", departmentService.findAll());
+        return "department/department-list :: departmentListFragment";
     }
 
 

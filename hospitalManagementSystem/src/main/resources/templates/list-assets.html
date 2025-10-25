@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Asset Management</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/asset-list.css}">
+
+    <style>
+        .table-container { margin-top: 20px; }
+        .card-header.bg-primary { background-color: #01C0C8 !important; color: #fff; }
+        .btn-primary { background-color: #0d6efd; border: none; }
+        .btn-primary:hover { background-color: #0b5ed7; }
+        .table th, .table td { vertical-align: middle; text-align: center; }
+        .pagination .active a { background-color: #0d6efd; color: #fff; border-color: #0d6efd; }
+        .pagination li.disabled a { pointer-events: none; color: #6c757d; }
+        .search-container .form-label { font-weight: 500; }
+    </style>
+</head>
+
+<body>
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="container-fluid">
+
+            <!-- Card Section -->
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-center">
+                    <i class="fa-solid fa-toolbox me-2"></i> Asset Management
+                </div>
+
+                <div class="card-body">
+
+                    <!-- Action Buttons -->
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <a th:href="@{/add-asset}" class="btn btn-primary">
+                            <i class="fa-solid fa-plus me-2"></i>Add New Asset
+                        </a>
+                        <button id="refreshBtn" class="btn btn-outline-secondary" onclick="location.reload()">
+                            <i class="fa-solid fa-refresh me-2"></i>Refresh
+                        </button>
+                    </div>
+
+<!--                    &lt;!&ndash; Search & Filters &ndash;&gt;-->
+<!--                    <div class="search-container">-->
+<!--                        <div class="row g-3 mb-3">-->
+<!--                            <div class="col-md-4">-->
+<!--                                <label class="form-label">Search</label>-->
+<!--                                <div class="input-group">-->
+<!--                                    <input type="text" id="searchInput" class="form-control"-->
+<!--                                           placeholder="Search by Asset ID, Model, Vendor...">-->
+<!--                                    <button class="btn btn-outline-secondary" type="button" id="clearSearch">-->
+<!--                                        <i class="fa-solid fa-times"></i>-->
+<!--                                    </button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="col-md-3">-->
+<!--                                <label class="form-label">Department</label>-->
+<!--                                <select id="departmentFilter" class="form-select">-->
+<!--                                    <option value="">All Departments</option>-->
+<!--                                    <option>IT</option>-->
+<!--                                    <option>HR</option>-->
+<!--                                    <option>Finance</option>-->
+<!--                                    <option>Operations</option>-->
+<!--                                    <option>Sales</option>-->
+<!--                                </select>-->
+<!--                            </div>-->
+<!--                            <div class="col-md-3">-->
+<!--                                <label class="form-label">Status</label>-->
+<!--                                <select id="statusFilter" class="form-select">-->
+<!--                                    <option value="">All Status</option>-->
+<!--                                    <option>ACTIVE</option>-->
+<!--                                    <option>INACTIVE</option>-->
+<!--                                    <option>MAINTENANCE</option>-->
+<!--                                    <option>RETIRED</option>-->
+<!--                                </select>-->
+<!--                            </div>-->
+<!--                            <div class="col-md-2">-->
+<!--                                <label class="form-label">&nbsp;</label>-->
+<!--                                <button id="applyFilters" class="btn btn-primary w-100">-->
+<!--                                    <i class="fa-solid fa-filter me-2"></i>Apply-->
+<!--                                </button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+                    <!-- Asset Table -->
+                    <div class="table-container">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead class="table-primary text-center">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Asset ID</th>
+                                    <th>Serial Number</th>
+                                    <th>Model</th>
+                                    <th>Vendor</th>
+                                    <th>Department</th>
+                                    <th>Purchase Date</th>
+                                    <th>Warranty Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="asset, stat : ${assetsPage.content}">
+                                    <td th:text="${stat.index + 1 + (assetsPage.number * assetsPage.size)}"></td>
+                                    <td th:text="${asset.assetId}"></td>
+                                    <td th:text="${asset.serialNumber}"></td>
+                                    <td th:text="${asset.model}"></td>
+                                    <td th:text="${asset.vendor}"></td>
+                                    <td th:text="${asset.departmentBranch}"></td>
+                                    <td th:text="${asset.purchaseDate}"></td>
+                                    <td th:text="${asset.warrantyDate}"></td>
+                                    <td th:text="${asset.status}"></td>
+                                    <td class="text-center">
+                                        <!-- Edit button -->
+<!--                                        <a th:href="@{'/view-assets/edit/' + ${asset.id}}" class="btn btn-sm btn-warning" title="Edit">-->
+<!--                                            <i class="fa-solid fa-pen"></i>-->
+<!--                                        </a>-->
+
+                                        <!-- Delete button using SweetAlert -->
+                                        <form th:action="@{'/view-assets/delete/' + ${asset.id}}" method="post" class="d-inline delete-form">
+                                            <button type="button" class="btn btn-sm btn-danger delete-btn">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(assetsPage.content)}">
+                                    <td colspan="10" class="text-center text-muted">No assets found.</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Asset Count -->
+                    <div class="text-muted text-center mt-3">
+                        Showing <span th:text="${assetsPage.number * assetsPage.size + 1}">0</span>
+                        to <span th:text="${(assetsPage.number * assetsPage.size) + assetsPage.numberOfElements}">0</span>
+                        of <span th:text="${assetsPage.totalElements}">0</span> assets
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/asset-list.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script th:if="${successMessage}">
+    Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: /*[[${successMessage}]]*/ '',
+        confirmButtonColor: '#0d6efd',
+        timer: 3000,
+        timerProgressBar: true
+    });
+</script>
+<script th:inline="javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        const deleteButtons = document.querySelectorAll('.delete-btn');
+        deleteButtons.forEach(btn => {
+            btn.addEventListener('click', function () {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "This action cannot be undone!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Submit the form
+                        btn.closest('form').submit();
+                    }
+                });
+            });
+        });
+    });
+</script>
+</body>
+</html>
